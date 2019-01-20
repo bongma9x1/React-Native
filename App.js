@@ -7,17 +7,22 @@
  */
 
 import React, {Component} from 'react';
-import {StatusBar, StyleSheet, Text, View, AppRegistry} from 'react-native';
+import {StatusBar, StyleSheet, Text, View, AppRegistry,TouchableOpacity} from 'react-native';
 
 class DoanReact extends Component{
   constructor(props){
     super(props);
   }
+  clickME(){
+    console.log('you click me')
+  }
   render(){
     return(
       <View>
-        <StatusBar hindden = "true"/>
-        <Text style = {{Backgr}}>Doan aaaaaaafasfasaaa </Text>
+        <TouchableOpacity onPress = {()=>{this.clickME()}}> // ham cua phim buton
+          <View style = {{backgroundClolor:'green',width:100,height:20,marginTop:100,marginLeft:20}}>
+          </View>
+        </TouchableOpacity>
       </View>
       );
   }
