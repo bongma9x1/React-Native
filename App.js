@@ -7,7 +7,7 @@
  */
 
 import React, {Component} from 'react';
-import {StatusBar, StyleSheet, Text, View, AppRegistry} from 'react-native';
+import {StatusBar, StyleSheet, Text, View, AppRegistry,TouchableOpacity} from 'react-native';
 
 class DoanReact extends Component{
   constructor(props){
@@ -20,14 +20,22 @@ class DoanReact extends Component{
       somaynam:this.state.somaynam + 1
       });
   }
+  clickMe1(){
+    console.log('CLICK ME')
+    this.setState({
+      somaynam:this.state.somaynam -1
+      });
+  }
   render(){
     return(
       <View>
         <Text style = {{fontSize:100}}>{this.state.somaynam} </Text>
-          <TouchableOpacity onPress = {()=>{this.clickMe()}}>
-            <View stye = {{with:100, height:200, backgroundColor: 'red'}}>
-            </View>
-          </TouchableOpacity>
+        <TouchableOpacity onPress = {()=>{this.clickMe()}}>
+          <View style = {{width:100, height:50, backgroundColor: 'red'}}/>
+        </TouchableOpacity>
+        <TouchableOpacity onPress = {()=>{this.clickMe1()}}>
+          <View style = {{width:100, height:50, backgroundColor: 'blue'}}/>
+        </TouchableOpacity>   
       </View>
       );
   }
