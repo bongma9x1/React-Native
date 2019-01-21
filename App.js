@@ -7,27 +7,36 @@
  */
 
 import React, {Component} from 'react';
-import {StatusBar, StyleSheet, Text, View, AppRegistry} from 'react-native';
+import {StatusBar, StyleSheet, Text, View, AppRegistry,Navigator} from 'react-native';
 
 class DoanReact extends Component{
-  constructor(props){
-    super(props);
-    this.state = {somaynam:999}
-  }
-  clickMe(){
-    console.log('CLICK ME')
-    this.setState({
-      somaynam:this.state.somaynam + 1
-      });
+  renderScene(route,navigator){
+    switch(route.name){
+      case "do":return(<ManHinhDo/>);
+      case "vang":return(<ManHinhVang/>);
+    }
   }
   render(){
     return(
-      <View>
-        <Text style = {{fontSize:100}}>{this.state.somaynam} </Text>
-          <TouchableOpacity onPress = {()=>{this.clickMe()}}>
-            <View stye = {{with:100, height:200, backgroundColor: 'red'}}>
-            </View>
-          </TouchableOpacity>
+      <Navigator initialRoute={{name:"do"}}
+      renderScene={this.renderScene}
+      />
+      );
+  }
+}
+
+export default class ManHinhDo extends Component{
+  render(){
+    return(
+      <View style = {{backgroundColor:'red', flex:1}}>
+      </View>
+      );
+  }
+}
+export default class ManHinhVang extends Component{
+  render(){
+    return(
+      <View style = {{backgroundColor:'yellow', flex:1}}>
       </View>
       );
   }
