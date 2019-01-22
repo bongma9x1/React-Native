@@ -1,44 +1,38 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
-
 import React, {Component} from 'react';
-import {StatusBar, StyleSheet, Text, View, AppRegistry,Navigator} from 'react-native';
+import {Button,StatusBar, StyleSheet, Text, View, AppRegistry,TouchableOpacity} from 'react-native';
+import { createStackNavigator, createAppContainer } from "react-navigation";
 
-class DoanReact extends Component{
-  renderScene(route,navigator){
-    switch(route.name){
-      case "do":return(<ManHinhDo/>);
-      case "vang":return(<ManHinhVang/>);
-    }
+class HomeScreen extends React.Component {
+  render() {
+    return (
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <Text>Home Screen</Text>
+        <Button
+          title="Go to Details"
+          onPress={() => this.props.navigation.navigate('Details')}
+        />
+      </View>
+    );
   }
-  render(){
-    return(
-      <Navigator initialRoute={{name:"do"}}
-      renderScene={this.renderScene}
-      />
-      );
+}
+class DetailsScreen extends React.Component {
+  render() {
+    return (
+      <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+        <Text>Details Screen</Text>
+      </View>
+    );
   }
 }
 
-export default class ManHinhDo extends Component{
-  render(){
-    return(
-      <View style = {{backgroundColor:'red', flex:1}}>
-      </View>
-      );
+const AppNavigator = createStackNavigator(
+  {
+    Home: HomeScreen,
+    Details: DetailsScreen
+  },
+  {
+    initialRouteName: "Home"
   }
-}
-export default class ManHinhVang extends Component{
-  render(){
-    return(
-      <View style = {{backgroundColor:'yellow', flex:1}}>
-      </View>
-      );
-  }
-}
-AppRegistry.registerComponent('DoanReact', () => DoanReact);
+);
+
+export default createAppContainer(AppNavigator);
